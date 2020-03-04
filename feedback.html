@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- weird refreshing behaviors -->
+<meta charset="utf-8">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <title>UExchange</title>
+</head>
+
+<script></script>
+
+<body onload="bodyLoaded()">
+
+  <h1>UExchange</h1>
+
+  <div class="navbar">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="misc.html">Misc</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="FAQ.html">FAQ</a></li>
+      <li><a href="feedback.html" class="active">Feedback!</a></li>
+    </ul>
+  </div>
+  <hr>
+
+  <h2> Give us your feedback! </h2>
+
+  <form action="mailto:bombarac@union.edu,vansickn@union.edu,balloue@union.edu,zhongq@union.edu" method="POST"
+        enctype="application/x-www-form-urlencoded">
+    <!-- RIGHT NOW MAIL TO GIVES A NEW WINDOW TO SEND THE FEEDBACK FORM (NOT ACTUALLY) -->
+    <!-- THINK AND DO ON OTHERS' IDEAS AS CONVENIENT TOO -->
+    <!-- ADD LOGIC OF CHOOSING AN EMAIL TO SEND TO AS POSSIBLE AND REASONABLE -->
+    <h3>User Info</h3> <!-- SWITCH TO HYPERLINK -->
+
+    <p class="input">
+      <label for="first">First Name: </label>
+      <input type="text" name="first" id="first">
+    </p>
+    <p class="input">
+      <label for="last">Last Name: </label>
+      <input type="text" name="last" id="last">
+    </p>
+    <p class="input">
+      <label for="contact">Contact: </label>
+      <input type="text" name="contact" id="contact">
+    </p>
+    <div class="contact">
+      <label for="contact_option">Contact Options: </label>
+      <!-- center the text -->
+      <select id="contact_option" multiple size="3" onchange="getTextBox(this.value)">
+        <!-- instant gap when clicks on the first time -->
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+        <option value="mail">Mail</option>
+        <option style="display: none"></option>
+<!--        <option selected disabled hidden style='display: none' value=''></option>-->
+        <!-- fix the blank box at the bottom -->
+      </select>
+      <label for="option"></label>
+      <input type="text" name="option" id="option" hidden>
+    </div>
+
+    <h3>Comments/Advices</h3>
+
+    <p class="input">
+      <label for="comment">Comments: </label>
+      <textarea id="comment" name="comment" placeholder="Anything that you would like to share with us"
+                rows="10" cols="50"></textarea>
+    </p>
+    <p class="reason">Please select reason(s) for your feedback today:<br>
+      <input type="checkbox" name="wrong_storage_amount" id="wrong_storage_amount">
+      <label for="wrong_storage_amount">The book/misc item's amount of storage is wrong</label><br>
+      <input type="checkbox" name="seller_no_response" id="seller_no_response">
+      <label for="seller_no_response">The student who sells the book/misc item has not replied</label><br>
+      <input type="checkbox" name="abrasion" id="abrasion">
+      <label for="abrasion">The book/misc item has abrasion on it</label><br>
+      <input type="checkbox" name="payment_go_down" id="payment_go_down">
+      <label for="payment_go_down">The payment of the book/misc item did not process in a normal way</label><br>
+      <input type="checkbox" name="ui_to_improve" id="ui_to_improve">
+      <label for="ui_to_improve">There are potentials to get a better user interface</label><br>
+      <input type="checkbox" name="error_in_browsing" id="error_in_browsing">
+      <label for="error_in_browsing">I encountered an error when I browse the sites</label><br>
+    </p>
+
+    <h3>Survey w/ rewards</h3>
+
+    <p class="survey">
+      <label for="user_experience_cleaness">1. The cleaness of the website: </label>
+      <input type="number" name="user_experience_cleaness" id="user_experience_cleaness"><br>
+      <label for="user_experience_functionality">2. The functionality of the website: </label>
+      <input type="number" name="user_experience_functionality" id="user_experience_functionality"><br>
+      <label for="user_experience_performance">3. The performance of the website: </label>
+      <input type="number" name="user_experience_performance" id="user_experience_performance"><br>
+    </p>
+
+    <p id="submit"><button type="submit" value="Submit">Submit</button></p>
+
+  </form>
+
+</body>
