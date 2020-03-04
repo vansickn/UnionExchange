@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <title>UExchange</title>
+
+    <h1>UExchange</h1>
+
+    <h3>CHECKOUT</h3>
+    <style>
+        h3 {
+            border-color: lightgray;
+            text-align: left;
+            font-size: 30px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #822433;
+            text-align: center;
+        }
+        p{
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 100;
+        }
+
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 200;
+            font-size: 40px;
+            text-align:center;
+        }
+
+        #checkout {
+            border-style: solid;
+            border-color: #822433;
+            margin-top: 50px;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        h4 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 200;
+            font-size: 20px;
+        }
+
+        form{
+            font-family: 'Roboto', sans-serif;
+            font-weight: 200;
+            margin-top: 50px;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="checkout">
+    <form action="home.html">
+
+        <h4>Your Information:</h4>
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" placeholder="John">
+        <br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" placeholder="Doe">
+        <br>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="doej@union.edu">
+        <br>
+        <br>
+        <label for="phone">Phone number:</label>
+        <input type="number" id="phone" name="phone" placeholder="1234567890">
+        <br>
+        <br>
+
+        <h4>Meeting:</h4>
+        <p>Select a location on campus to pickup your purchase:</p>
+        <input type="radio" id="loc1" name="loc" value="Reamer Campus Center">
+        <label for="loc1">Reamer Campus Center</label>
+        <br>
+        <input type="radio" id="loc2" name="loc" value="The Nott">
+        <label for="loc2">The Nott</label>
+        <br>
+        <input type="radio" id="loc3" name="loc" value="Schaeffer Library">
+        <label for="loc3">Schaeffer Library</label>
+        <br>
+        <input type="radio" id="loc4" name="loc" value="Wold Starbucks">
+        <label for="loc4">Wold Starbucks</label>
+        <br>
+        <input type="radio" name="loc" value=""> Other: <input type="text" name="other" placeholder="write in here">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+
+        <p>Select a date you are available to meet. The seller will email you with a time they are available that day.</p>
+        <input type="date" id="date" name="date" placeholder="yyyy-mm-dd"><br><br>
+
+        <h4>Payment:</h4>
+        <p>UExchange has our buyers and sellers complete their payments in person when they meet to pickup/drop off the item.
+            Please Specify how you will be paying for this item.</p>
+        <p>I will be paying with:</p>
+        <input type="radio" id="pay1" name="payment" value="Cash">
+        <label for="pay1"> Cash </label>
+        <br>
+        <input type="radio" id="pay2" name="payment" value="Venmo">
+        <label for="pay2"> Venmo </label>
+        <br>
+        <input type="radio" name="payment" value=""> Other: <input type="text" name="other" placeholder="write in here">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+        <br>
+        <br>
+
+
+        <h4>Notes for the seller:</h4>
+        <p>If you have any questions, comments, concerns, or notes you'd like to provide the seller, please leave them in the space below.</p>
+        <textarea id = "comments" rows="5" cols="80" placeholder="comments..."></textarea>
+        <br>
+        <br>
+
+
+        <div align="center">
+            <h4>Thank you for your shopping with us! Select "submit" to complete your purchase and return to the home page. If you've changed
+            your mind, select "cancel" and return to the home page.</h4>
+            <br>
+            <button type="button" style="width:100px; color: red" onclick="cancel()">CANCEL</button>
+            <input type="submit" value="SUBMIT" style="width:100px; color: green">
+        </div>
+
+        <br>
+        <br>
+
+    </form>
+    </div>
+
+    <script>
+        function cancel(){
+            if(confirm("Selecting 'OK' will cancel the purchasing of this item.")){
+                window.location = "home.html";
+            }
+        }
+    </script>
+</body>
