@@ -1,5 +1,14 @@
 <!DOCTYPE html>
-<!-- weird refreshing behaviors -->
+<!-- DO: NON-GRADED ASSIGNMENT 3 -->
+<!-- FIX: WEIRD REFRESHING BEHAVIORS -->
+<!-- FIX: POST METHOD GIVES THE QUERY STRING TO THE FORM DATA -->
+<!-- FIX: RIGHT NOW MAIL TO GIVES A NEW WINDOW TO SEND THE FEEDBACK FORM (NOT ACTUALLY) -->
+<!-- FIX: TYPE OF TEXT AND NUMBER ARE DISPLAYED IN THE SENDING EMAIL -->
+<!-- FIX: ADD FORM VALIDATION -->
+<!-- REDESIGN: ADD LOGIC OF CHOOSING AN EMAIL TO SEND TO AS POSSIBLE AND REASONABLE -->
+<!-- REDESIGN: REWARDS AFTER SUBMISSION -->
+<!-- DESIGN: SET UP SERVER -->
+<!-- DESIGN: SWITCH TO HYPERLINK AS POSSIBLE AND NECESSARY -->
 <meta charset="utf-8">
 
 <head>
@@ -7,9 +16,9 @@
   <title>UExchange</title>
 </head>
 
-<script></script>
+<script src="feedback_response.js">// fix the execution order</script>
 
-<body onload="bodyLoaded()">
+<body>
 
   <h1>UExchange</h1>
 
@@ -20,82 +29,99 @@
       <li><a href="misc.html">Misc</a></li>
       <li><a href="account.html">Account</a></li>
       <li><a href="FAQ.html">FAQ</a></li>
-      <li><a href="feedback.html" class="active">Feedback!</a></li>
+      <li><a href="feedback.html" class="active">Feedback!</a></li> <!-- usage of class="active" -->
     </ul>
   </div>
-  <hr>
 
   <h2> Give us your feedback! </h2>
+  <!--  mailto:bombarac@union.edu,vansickn@union.edu,balloue@union.edu,zhongq@union.edu -->
+  <!-- https://www.example.com/ -->
+  <form action="mailto:bombarac@union.edu,vansickn@union.edu,balloue@union.edu,zhongq@union.edu" id="feedback"
+        method="POST" enctype="application/x-www-form-urlencoded">
+    <div class="form-contents">
 
-  <form action="mailto:bombarac@union.edu,vansickn@union.edu,balloue@union.edu,zhongq@union.edu" method="POST"
-        enctype="application/x-www-form-urlencoded">
-    <!-- RIGHT NOW MAIL TO GIVES A NEW WINDOW TO SEND THE FEEDBACK FORM (NOT ACTUALLY) -->
-    <!-- THINK AND DO ON OTHERS' IDEAS AS CONVENIENT TOO -->
-    <!-- ADD LOGIC OF CHOOSING AN EMAIL TO SEND TO AS POSSIBLE AND REASONABLE -->
-    <h3>User Info</h3> <!-- SWITCH TO HYPERLINK -->
+      <div class="user_info">
+        <h3>User Info</h3>
+        <p id="first_name">
+          <label for="first">First Name: &nbsp;</label>
+          <input type="text" name="first" id="first" placeholder="John/Jane">
+        </p>
+        <p id="last_name">
+          <label for="last">Last Name: &nbsp;</label>
+          <input type="text" name="last" id="last" placeholder="Doe">
+        </p>
+        <p id="contact_option" onclick="toggleContactTextBox();">Contact: &nbsp;
+          <!-- div class to separate radio buttons and the option input -->
+          <input type="radio" name="option" id="email">
+          <label for="email">Email</label>
+          <input type="radio" name="option" id="phone">
+          <label for="phone">Phone</label>
+          <input type="radio" name="option" id="mail">
+          <label for="mail">Mail</label>
+          &nbsp;
+          <input type="text" name="option_input" id="option_input" hidden>
+          <label for="option_input"></label>
+        </p>
+      </div>
 
-    <p class="input">
-      <label for="first">First Name: </label>
-      <input type="text" name="first" id="first">
-    </p>
-    <p class="input">
-      <label for="last">Last Name: </label>
-      <input type="text" name="last" id="last">
-    </p>
-    <p class="input">
-      <label for="contact">Contact: </label>
-      <input type="text" name="contact" id="contact">
-    </p>
-    <div class="contact">
-      <label for="contact_option">Contact Options: </label>
-      <!-- center the text -->
-      <select id="contact_option" multiple size="3" onchange="getTextBox(this.value)">
-        <!-- instant gap when clicks on the first time -->
-        <option value="email">Email</option>
-        <option value="phone">Phone</option>
-        <option value="mail">Mail</option>
-        <option style="display: none"></option>
-<!--        <option selected disabled hidden style='display: none' value=''></option>-->
-        <!-- fix the blank box at the bottom -->
-      </select>
-      <label for="option"></label>
-      <input type="text" name="option" id="option" hidden>
+      <div class="user_motivation">
+        <h3>Feedback Motivation</h3>
+        <p>
+          <input type="checkbox" name="incorrect_account_info" id="incorrect_account_info">
+          <label for="incorrect_account_info">My account information is not correct</label><br>
+          <input type="checkbox" name="error_in_browsing" id="error_in_browsing">
+          <label for="error_in_browsing">I encountered a logical error when I browse the sites</label><br>
+          <input type="checkbox" name="payment_go_down" id="payment_go_down">
+          <label for="payment_go_down">The payment did not process in a normal way</label><br>
+          <input type="checkbox" name="ui_to_improve" id="ui_to_improve">
+          <label for="ui_to_improve">There are potentials to get a better user interface</label><br>
+          <input type="checkbox" name="seller_no_response" id="seller_no_response">
+          <label for="seller_no_response">The seller of the book/misc item has not replied</label><br>
+          <input type="checkbox" name="wrong_storage_amount" id="wrong_storage_amount">
+          <label for="wrong_storage_amount">The book/misc item is out of stock</label><br>
+          <input type="checkbox" name="delivery_not_corresponding" id="delivery_not_corresponding">
+          <label for="delivery_not_corresponding">The book/misc item delivery is not corresponding</label><br>
+          <input type="checkbox" name="abrasion" id="abrasion">
+          <label for="abrasion">The book/misc item has several abrasions on it</label><br>
+        </p>
+      </div>
+
+      <div class="user_comments">
+        <h3>Comments</h3>
+        <p id="comments">
+          <label for="comment"></label>
+          <textarea id="comment" name="comment" placeholder="Anything that you would like to share with us"
+                    rows="10" cols="50"></textarea>
+        </p>
+      </div>
+
     </div>
 
-    <h3>Comments/Advices</h3>
+<!--    <h3>Rating w/ rewards</h3>-->
 
-    <p class="input">
-      <label for="comment">Comments: </label>
-      <textarea id="comment" name="comment" placeholder="Anything that you would like to share with us"
-                rows="10" cols="50"></textarea>
-    </p>
-    <p class="reason">Please select reason(s) for your feedback today:<br>
-      <input type="checkbox" name="wrong_storage_amount" id="wrong_storage_amount">
-      <label for="wrong_storage_amount">The book/misc item's amount of storage is wrong</label><br>
-      <input type="checkbox" name="seller_no_response" id="seller_no_response">
-      <label for="seller_no_response">The student who sells the book/misc item has not replied</label><br>
-      <input type="checkbox" name="abrasion" id="abrasion">
-      <label for="abrasion">The book/misc item has abrasion on it</label><br>
-      <input type="checkbox" name="payment_go_down" id="payment_go_down">
-      <label for="payment_go_down">The payment of the book/misc item did not process in a normal way</label><br>
-      <input type="checkbox" name="ui_to_improve" id="ui_to_improve">
-      <label for="ui_to_improve">There are potentials to get a better user interface</label><br>
-      <input type="checkbox" name="error_in_browsing" id="error_in_browsing">
-      <label for="error_in_browsing">I encountered an error when I browse the sites</label><br>
-    </p>
+<!--    <p class="rating">-->
+<!--      <label for="cleaness">1. The cleaness of the website: </label>-->
+<!--      <input type="number" name="cleaness" id="cleaness"><br>-->
+<!--      <label for="functionality">2. The functionality of the website: </label>-->
+<!--      <input type="number" name="functionality" id="functionality"><br>-->
+<!--      <label for="performance">3. The performance of the website: </label>-->
+<!--      <input type="number" name="performance" id="performance"><br>-->
+<!--      <label for="design">4. The design of the website: </label>-->
+<!--      <input type="number" name="design" id="design"><br>-->
+<!--      <label for="compatibility">5. The compatibility of the website: </label>-->
+<!--      <input type="number" name="compatibility" id="compatibility"><br>-->
+<!--      <label for="extensibility">6. The extensibility of the website: </label>-->
+<!--      <input type="number" name="extensibility" id="extensibility"><br>-->
+<!--    </p>-->
 
-    <h3>Survey w/ rewards</h3>
-
-    <p class="survey">
-      <label for="user_experience_cleaness">1. The cleaness of the website: </label>
-      <input type="number" name="user_experience_cleaness" id="user_experience_cleaness"><br>
-      <label for="user_experience_functionality">2. The functionality of the website: </label>
-      <input type="number" name="user_experience_functionality" id="user_experience_functionality"><br>
-      <label for="user_experience_performance">3. The performance of the website: </label>
-      <input type="number" name="user_experience_performance" id="user_experience_performance"><br>
-    </p>
-
-    <p id="submit"><button type="submit" value="Submit">Submit</button></p>
+    <div class="buttons">
+      <p><button type="submit" value="submit" id="submit">Submit</button></p>&nbsp; <!-- button with img -->
+      <!-- buying date picker -->
+      <!-- try out combo box -->
+      <!-- url, tel, email, search types of input & input restrictions -->
+      <!-- add fallback and/or polyfill as possible -->
+      <p><button type="reset" value="reset" id="reset">Reset</button></p>
+    </div>
 
   </form>
 
